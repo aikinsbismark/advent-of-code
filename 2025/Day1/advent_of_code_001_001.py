@@ -1,22 +1,20 @@
 with open("input/2025-1") as file:
-    moves = [line.strip() for line in file]
+    rotations = [line.strip() for line in file]
 
-position = 50
-total_point = 100
+dial_position = 50
 total_zeros = 0
 
-for shift in moves:
-    direction = shift[0]
-    value = int(shift[1:])
+for rotation in rotations:
+    direction, distance = rotation[0], int(rotation[1:])
 
-    if direction == 'L':
-        position -= value
+    if direction == "L":
+        dial_position -= distance       
     else: 
-        position += value
+        dial_position += distance
 
-    position %= total_point
+    dial_position %= 100
 
-    if position == 0:
+    if dial_position == 0:
         total_zeros += 1
 
 print(f"total zeros: {total_zeros}")
